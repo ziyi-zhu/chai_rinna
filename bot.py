@@ -2,12 +2,14 @@ from chai_py import ChaiBot, Update
 import npu
 import json
 import requests
+from emoticons import emoticons
+import random
 
 BOT_NAME = "Rinna"
 USR_NAME = "Person"
 
 API_TOKEN = 'api_pqqqNkmGKXbDmIVgwoXLBAPmyiAouNTlKP'
-API_URL = "https://api-inference.huggingface.co/models/distilbert-base-uncased-finetuned-sst-2-english"
+API_URL = "https://api-inference.huggingface.co/models/bhadresh-savani/distilbert-base-uncased-emotion"
 
 class Bot(ChaiBot):
     def setup(self):
@@ -23,7 +25,7 @@ class Bot(ChaiBot):
             'temperature': 0.9
         }
         self.headers = {"Authorization": f"Bearer {API_TOKEN}"}
-        self.context = f'{BOT_NAME} is 16 years old. {BOT_NAME} is a high school girl living in Tokyo, Japan. She loves to watch anime and read manga. She is cute and friendly. She has a crush on .\n'
+        self.context = f'{BOT_NAME} is 16 years old. {BOT_NAME} is a high school girl living in Tokyo, Japan. She loves to watch anime and read manga. She is cute and friendly.\n'
 
     def query(self, payload):
         data = json.dumps(payload)
@@ -60,5 +62,14 @@ class Bot(ChaiBot):
 
         response = self.get_message(text)
         self.chat_log.append((BOT_NAME, response))
+
+        if random.uniform(0, 1) > 0.5:
+            try:
+                data = self.query({"inputs": response})
+                results = [(pred['score'], pred['label']) for pred in data[0]]
+                emoticon = random.choice(emoticons[max(results)[1]])
+                response += f' {emoticon}'
+            except: 
+                pass
 
         return response
