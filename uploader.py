@@ -5,9 +5,8 @@ from chai_py.auth import set_auth
 from bot import Bot
 
 from chai_py.defaults import GUEST_UID, GUEST_KEY
+from credentials import DEVELOPER_UID, DEVELOPER_KEY
 
-DEVELOPER_UID = "j6sgKZMEmmNLTRp5fP7aug5gC9Q2"
-DEVELOPER_KEY = "mGIwNBkX_9yuN_UotAHx9BcaiRDECPHbsUrdK1O-CgFcc2_le6OAS5Lew5jcTCSHhzYr9gVia1JrP04JcOK27g"
 
 if DEVELOPER_KEY is None or DEVELOPER_UID is None:
     raise RuntimeError("Please fetch your UID and KEY from the bottom of the Chai Developer Platform. https://chai.ml/dev")
