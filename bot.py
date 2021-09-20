@@ -52,7 +52,7 @@ class Bot(ChaiBot):
             return f'Hellooo! :) <3 I\'m {self.bot_name}, tell me a little story about today?' + f'\n\n![](https://media.giphy.com/media/PO1BMFxn6E1ck/giphy.gif)'
 
         self.chat_log.append((self.user_name, user_reply))
-        history = '\n'.join([f'{sender} said: "{message}"' for (sender, message) in self.chat_log])
+        history = '\n'.join([f'{sender} said: "{message}"' for (sender, message) in self.chat_log[-10:]])
         # print(history)
         data = [self.context + history + f'\n{self.bot_name} said: "']
 
@@ -67,10 +67,10 @@ class Bot(ChaiBot):
             results = [(pred['score'], pred['label']) for pred in data[0]]
             score, emotion = max(results)
             print(score, emotion)
-            if score > 0.95:
+            if score > 0.98:
                 gif = random.choice(gifs[emotion])
                 response += f'\n\n![]({gif})'
-            elif score > 0.5:
+            elif score > 0.8:
                 emoticon = random.choice(emoticons[emotion])
                 response += f' {emoticon}'
         except: 
