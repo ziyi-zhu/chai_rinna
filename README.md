@@ -53,5 +53,3 @@ Join our [Discord channel](https://discord.com/invite/YfrVwBtYWb).
 
 Have fun building!
 
-
-<audio controls loop autoplay><source src="https://lovo-assets.s3.us-west-2.amazonaws.com/skin_sample/1625666750730.wav" type="audio/wav">Your browser dose not Support the audio Tag</audio>
